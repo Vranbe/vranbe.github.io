@@ -2,37 +2,162 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Портфолио — Вран</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vranbe — Портфолио</title>
+
   <style>
-    body { font-family: system-ui, sans-serif; margin: 0; padding: 40px; line-height: 1.5; }
-    .wrap { max-width: 900px; margin: 0 auto; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
-    .card { border: 1px solid #ddd; border-radius: 14px; padding: 16px; }
-    a { text-decoration: none; }
+    /* БАЗОВЫЕ НАСТРОЙКИ */
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      margin: 0;
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    /* ШАПКА */
+    .hero {
+      border: 1px solid #ddd;
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    /* ЛЕВАЯ ЧАСТЬ: АВАТАР + ИМЯ */
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 220px;
+    }
+    .avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 999px; /* делает круг */
+      border: 1px solid #ccc;
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+    }
+    .name {
+      font-weight: 700;
+      font-size: 22px;
+    }
+
+    /* ПРАВАЯ ЧАСТЬ: "РИСУНОК" С ПЕРСОНАЖЕМ */
+    .hero-art {
+      flex: 1;
+      border: 1px dashed #bbb;
+      border-radius: 14px;
+      min-height: 140px;
+      display: grid;
+      place-items: center;
+      color: #444;
+    }
+
+    /* ТЕКСТ ПОД ШАПКОЙ */
+    .intro {
+      margin-top: 16px;
+      font-size: 18px;
+    }
+
+    /* МЕНЮ */
+    nav.menu {
+      margin-top: 18px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    nav.menu a {
+      border: 1px solid #ddd;
+      border-radius: 999px;
+      padding: 10px 14px;
+      color: #111;
+      text-decoration: none;
+      display: inline-block;
+    }
+    nav.menu a:hover {
+      border-color: #999;
+    }
+
+    /* РАЗДЕЛЫ */
+    section {
+      margin-top: 28px;
+      border: 1px solid #eee;
+      border-radius: 16px;
+      padding: 18px;
+    }
+    section h2 {
+      margin: 0 0 10px 0;
+      font-size: 20px;
+    }
+
+    /* ЗАГЛУШКИ ПОД КОНТЕНТ */
+    .placeholder {
+      border: 1px dashed #bbb;
+      border-radius: 14px;
+      padding: 18px;
+      color: #444;
+    }
   </style>
 </head>
+
 <body>
-  <div class="wrap">
-    <h1>Вран — портфолио</h1>
-    <p>Иллюстрация / комикс / анимация. Мадрид.</p>
+  <div class="container">
 
-    <h2>Проекты</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>Проект 1</h3>
-        <p>Короткое описание.</p>
-        <a href="#">Смотреть</a>
+    <!-- ШАПКА (шапка = hero-блок) -->
+    <header class="hero">
+      <!-- слева: аватарка + имя -->
+      <div class="profile">
+        <div class="avatar">картинка<br>аватар</div>
+        <div class="name">Vranbe</div>
       </div>
-      <div class="card">
-        <h3>Проект 2</h3>
-        <p>Короткое описание.</p>
-        <a href="#">Смотреть</a>
-      </div>
-    </div>
 
-    <h2>Контакты</h2>
-    <p>Telegram: @... • Email: ...</p>
+      <!-- справа: большой рисунок/баннер -->
+      <div class="hero-art">
+        картинка персонажа, который приветствует
+      </div>
+    </header>
+
+    <!-- Текст под шапкой -->
+    <p class="intro">
+      Здравствуй! Это мой сайт, на котором можно будет видеть мои недавние работы и расценки на них.
+    </p>
+
+    <!-- Меню -->
+    <nav class="menu" aria-label="Меню разделов">
+      <a href="#gallery">Галерея</a>
+      <a href="#prices">Прайслист</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+
+    <!-- Разделы -->
+    <section id="gallery">
+      <h2>Галерея</h2>
+      <div class="placeholder">
+        Здесь позже будет сетка с работами (превью-картинки, подписи, даты и т.д.)
+      </div>
+    </section>
+
+    <section id="prices">
+      <h2>Прайслист</h2>
+      <div class="placeholder">
+        Здесь позже будут расценки, условия, сроки, варианты (скетч/рендер/фон и т.д.)
+      </div>
+    </section>
+
+    <section id="contacts">
+      <h2>Контакты</h2>
+      <div class="placeholder">
+        Здесь позже будут ссылки: Telegram, почта, соцсети, форма обратной связи (если захочешь)
+      </div>
+    </section>
+
   </div>
 </body>
 </html>
