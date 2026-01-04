@@ -27,8 +27,6 @@
       gap: 20px;
       align-items: center;
     }
-
-    /* ЛЕВАЯ ЧАСТЬ: АВАТАР + ИМЯ */
     .profile {
       display: flex;
       align-items: center;
@@ -38,18 +36,17 @@
     .avatar {
       width: 72px;
       height: 72px;
-      border-radius: 999px; /* делает круг */
+      border-radius: 999px;
       border: 1px solid #ccc;
       display: grid;
       place-items: center;
       font-size: 12px;
+      text-align: center;
     }
     .name {
       font-weight: 700;
       font-size: 22px;
     }
-
-    /* ПРАВАЯ ЧАСТЬ: "РИСУНОК" С ПЕРСОНАЖЕМ */
     .hero-art {
       flex: 1;
       border: 1px dashed #bbb;
@@ -58,51 +55,79 @@
       display: grid;
       place-items: center;
       color: #444;
+      text-align: center;
+      padding: 12px;
     }
 
-    /* ТЕКСТ ПОД ШАПКОЙ */
+    /* ТЕКСТ */
     .intro {
       margin-top: 16px;
       font-size: 18px;
     }
 
-    /* МЕНЮ */
-    nav.menu {
+    /* МЕНЮ-ТАБЫ */
+    .tabs {
       margin-top: 18px;
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
     }
-    nav.menu a {
+    .tab-btn {
       border: 1px solid #ddd;
       border-radius: 999px;
       padding: 10px 14px;
       color: #111;
-      text-decoration: none;
-      display: inline-block;
+      background: transparent;
+      cursor: pointer;
+      font: inherit;
     }
-    nav.menu a:hover {
+    .tab-btn:hover {
       border-color: #999;
     }
+    .tab-btn[aria-selected="true"] {
+      border-color: #111;
+      font-weight: 600;
+    }
 
-    /* РАЗДЕЛЫ */
-    section {
-      margin-top: 28px;
+    /* КОНТЕНТ-БЛОК, КОТОРЫЙ МЕНЯЕТСЯ */
+    .panel {
+      margin-top: 18px;
       border: 1px solid #eee;
       border-radius: 16px;
       padding: 18px;
     }
-    section h2 {
+    .panel h2 {
       margin: 0 0 10px 0;
       font-size: 20px;
     }
 
-    /* ЗАГЛУШКИ ПОД КОНТЕНТ */
+    /* СКРЫТИЕ/ПОКАЗ */
+    .tab-panel[hidden] {
+      display: none;
+    }
+
+    /* ЗАГЛУШКИ */
     .placeholder {
       border: 1px dashed #bbb;
       border-radius: 14px;
       padding: 18px;
       color: #444;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .gallery-item {
+      border: 1px dashed #bbb;
+      border-radius: 14px;
+      min-height: 120px;
+      display: grid;
+      place-items: center;
+      color: #444;
+      text-align: center;
+      padding: 10px;
     }
   </style>
 </head>
@@ -110,54 +135,108 @@
 <body>
   <div class="container">
 
-    <!-- ШАПКА (шапка = hero-блок) -->
+    <!-- ШАПКА -->
     <header class="hero">
-      <!-- слева: аватарка + имя -->
       <div class="profile">
         <div class="avatar">картинка<br>аватар</div>
         <div class="name">Vranbe</div>
       </div>
 
-      <!-- справа: большой рисунок/баннер -->
       <div class="hero-art">
         картинка персонажа, который приветствует
       </div>
     </header>
 
-    <!-- Текст под шапкой -->
     <p class="intro">
       Здравствуй! Это мой сайт, на котором можно будет видеть мои недавние работы и расценки на них.
     </p>
 
-    <!-- Меню -->
-    <nav class="menu" aria-label="Меню разделов">
-      <a href="#gallery">Галерея</a>
-      <a href="#prices">Прайслист</a>
-      <a href="#contacts">Контакты</a>
+    <!-- ТАБЫ (кнопки вместо ссылок) -->
+    <nav class="tabs" aria-label="Разделы">
+      <button class="tab-btn" type="button"
+              data-tab="gallery" aria-selected="true">
+        Галерея
+      </button>
+
+      <button class="tab-btn" type="button"
+              data-tab="prices" aria-selected="false">
+        Прайслист
+      </button>
+
+      <button class="tab-btn" type="button"
+              data-tab="contacts" aria-selected="false">
+        Контакты
+      </button>
     </nav>
 
-    <!-- Разделы -->
-    <section id="gallery">
-      <h2>Галерея</h2>
-      <div class="placeholder">
-        Здесь позже будет сетка с работами (превью-картинки, подписи, даты и т.д.)
-      </div>
-    </section>
+    <!-- ЕДИНЫЙ БЛОК-КОНТЕЙНЕР, ВНУТРИ КОТОРОГО ПАНЕЛИ -->
+    <div class="panel">
+      <!-- Панель: Галерея (по умолчанию видима) -->
+      <section class="tab-panel" id="tab-gallery">
+        <h2>Галерея</h2>
+        <div class="placeholder">
+          Здесь позже будет сетка с работами.
+          <div class="gallery-grid">
+            <div class="gallery-item">картинка 1</div>
+            <div class="gallery-item">картинка 2</div>
+            <div class="gallery-item">картинка 3</div>
+            <div class="gallery-item">картинка 4</div>
+          </div>
+        </div>
+      </section>
 
-    <section id="prices">
-      <h2>Прайслист</h2>
-      <div class="placeholder">
-        Здесь позже будут расценки, условия, сроки, варианты (скетч/рендер/фон и т.д.)
-      </div>
-    </section>
+      <!-- Панель: Прайслист (скрыта) -->
+      <section class="tab-panel" id="tab-prices" hidden>
+        <h2>Прайслист</h2>
+        <div class="placeholder">
+          Здесь позже будут расценки, сроки, условия и типы работ.
+        </div>
+      </section>
 
-    <section id="contacts">
-      <h2>Контакты</h2>
-      <div class="placeholder">
-        Здесь позже будут ссылки: Telegram, почта, соцсети, форма обратной связи (если захочешь)
-      </div>
-    </section>
+      <!-- Панель: Контакты (скрыта) -->
+      <section class="tab-panel" id="tab-contacts" hidden>
+        <h2>Контакты</h2>
+        <div class="placeholder">
+          Telegram: @...<br>
+          Email: ...<br>
+          Соцсети: ...
+        </div>
+      </section>
+    </div>
 
   </div>
+
+  <script>
+    // 1) Находим все кнопки вкладок
+    const tabButtons = document.querySelectorAll(".tab-btn");
+
+    // 2) Функция: показать нужную панель и скрыть остальные
+    function showTab(tabName) {
+      // Панели имеют id вида: tab-gallery / tab-prices / tab-contacts
+      const panels = document.querySelectorAll(".tab-panel");
+
+      panels.forEach(panel => {
+        const isTarget = panel.id === `tab-${tabName}`;
+        // hidden=true скрывает, hidden=false показывает
+        panel.hidden = !isTarget;
+      });
+
+      // 3) Обновляем состояние кнопок (выбранная/не выбранная)
+      tabButtons.forEach(btn => {
+        const isSelected = btn.dataset.tab === tabName;
+        btn.setAttribute("aria-selected", isSelected ? "true" : "false");
+      });
+    }
+
+    // 4) Навешиваем клики на кнопки
+    tabButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        showTab(btn.dataset.tab);
+      });
+    });
+
+    // По умолчанию открыта галерея (как стоит aria-selected="true")
+    showTab("gallery");
+  </script>
 </body>
 </html>
