@@ -133,12 +133,10 @@
       font-size: 20px;
     }
 
-    /* СКРЫТИЕ/ПОКАЗ */
     .tab-panel[hidden] {
       display: none;
     }
 
-    /* ЗАГЛУШКИ */
     .placeholder {
       border: 1px dashed #bbb;
       border-radius: 14px;
@@ -161,6 +159,27 @@
       text-align: center;
       padding: 10px;
     }
+.tab-panel {
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.tab-panel.is-active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.panel {
+  position: relative;
+  min-height: 260px; 
+}
+
+.panel .tab-panel {
+  position: absolute;
+  inset: 18px;
+}
   </style>
 </head>
 
@@ -220,7 +239,7 @@
       </section>
 
       <!-- Панель: Прайслист (скрыта) -->
-      <section class="tab-panel" id="tab-prices" hidden>
+      <section class="tab-panel" id="tab-prices">
         <h2>Prices</h2>
         <div class="placeholder">
           Soon here will be the pricelist.
@@ -240,30 +259,27 @@
 
   </div>
 
-  <script>
-    const tabButtons = document.querySelectorAll(".tab-btn");
+<script>
+  const tabButtons = document.querySelectorAll(".tab-btn");
+  const panels = document.querySelectorAll(".tab-panel");
 
-    function showTab(tabName) {
-      const panels = document.querySelectorAll(".tab-panel");
-
-      panels.forEach(panel => {
-        const isTarget = panel.id === `tab-${tabName}`;
-        panel.hidden = !isTarget;
-      });
-
-      tabButtons.forEach(btn => {
-        const isSelected = btn.dataset.tab === tabName;
-        btn.setAttribute("aria-selected", isSelected ? "true" : "false");
-      });
-    }
-
-    tabButtons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        showTab(btn.dataset.tab);
-      });
+  function showTab(tabName) {
+    panels.forEach(panel => {
+      const isTarget = panel.id === `tab-${tabName}`;
+      panel.classList.toggle("is-active", isTarget);
     });
 
-    showTab("gallery");
-  </script>
+    tabButtons.forEach(btn => {
+      const isSelected = btn.dataset.tab === tabName;
+      btn.setAttribute("aria-selected", isSelected ? "true" : "false");
+    });
+  }
+
+  tabButtons.forEach(btn => {
+    btn.addEventListener("click", () => showTab(btn.dataset.tab));
+  });
+
+  showTab("gallery");
+</script>
 </body>
 </html>
