@@ -62,6 +62,8 @@
       font-weight: 700;
       font-size: 22px;
       text-align: center;
+      color: #fff;
+      box-shadow: 0 0 15px rgba(235, 199, 115, 0.5);
     }
     .hero-art {
   flex: 1;
@@ -98,9 +100,19 @@
       background: #fffc;
       cursor: pointer;
       font: inherit;
+
+      transition:
+      transform 160ms ease,
+      box-shadow 200ms ease,
+      border-color 200ms ease,
+      background 200ms ease;
     }
     .tab-btn:hover {
+      transform: translateY(-1px);
       box-shadow: 0 0 15px rgba(235, 199, 115, 0.8);
+    }
+    .tab-btn:active {
+      transform: translateY(0);
     }
     .tab-btn[aria-selected="true"] {
       border-color: #fff;
