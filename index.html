@@ -90,26 +90,28 @@
       flex-wrap: wrap;
     }
     .tab-btn {
-      border: 1px solid #ddd;
+      border: 2px solid #fff;
       border-radius: 999px;
       padding: 10px 14px;
       color: #111;
-      background: #fff5;
+      background: #fff8;
       cursor: pointer;
       font: inherit;
     }
     .tab-btn:hover {
-      border-color: #999;
+      box-shadow: 0 0 20px rgba(235, 199, 115, 0.5);
     }
     .tab-btn[aria-selected="true"] {
       border-color: #111;
       font-weight: 600;
+      box-shadow: 0 0 5px rgba(235, 199, 115, 0.3);
     }
 
     /* КОНТЕНТ-БЛОК, КОТОРЫЙ МЕНЯЕТСЯ */
     .panel {
       margin-top: 18px;
-      border: 1px solid #eee;
+      background: #fff8;
+      border: 2px solid #fff;
       border-radius: 16px;
       padding: 18px;
     }
@@ -226,35 +228,28 @@
   </div>
 
   <script>
-    // 1) Находим все кнопки вкладок
     const tabButtons = document.querySelectorAll(".tab-btn");
 
-    // 2) Функция: показать нужную панель и скрыть остальные
     function showTab(tabName) {
-      // Панели имеют id вида: tab-gallery / tab-prices / tab-contacts
       const panels = document.querySelectorAll(".tab-panel");
 
       panels.forEach(panel => {
         const isTarget = panel.id === `tab-${tabName}`;
-        // hidden=true скрывает, hidden=false показывает
         panel.hidden = !isTarget;
       });
 
-      // 3) Обновляем состояние кнопок (выбранная/не выбранная)
       tabButtons.forEach(btn => {
         const isSelected = btn.dataset.tab === tabName;
         btn.setAttribute("aria-selected", isSelected ? "true" : "false");
       });
     }
 
-    // 4) Навешиваем клики на кнопки
     tabButtons.forEach(btn => {
       btn.addEventListener("click", () => {
         showTab(btn.dataset.tab);
       });
     });
 
-    // По умолчанию открыта галерея (как стоит aria-selected="true")
     showTab("gallery");
   </script>
 </body>
