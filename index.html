@@ -28,6 +28,9 @@
 
     /* ШАПКА */
     .hero {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
       background-image: url("images/pattern.png");
       background-repeat: repeat;
       background-size: 100px;
@@ -64,14 +67,15 @@
     .name {
       font-weight: 700;
       font-size: 22px;
+      text-align: center;
     }
     .hero-art {
       flex: 1;
-      width: 100%;
+      width: 30%;
       max-width: 400px;
       height: auto;
       display: grid;
-      place-items: center;
+      place-items: right;
       padding: 12px;
     }
 
