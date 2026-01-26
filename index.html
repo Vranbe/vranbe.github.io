@@ -28,20 +28,13 @@
 
     /* ШАПКА */
     .hero {
-      display: flex;
-      flex-direction: row;
-      gap: 20px;
-      align-items: center;
-      background-image: url("images/pattern.png");
-      background-repeat: repeat;
-      background-size: 100px;
-      background-attachment: fixed;
-      padding: 20px;
-      box-sizing: border-box; 
-      display: flex;
-      gap: 5px;
-      align-items: center;
-    }
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
     .profile {
       display: flex;
       flex-direction: column;
@@ -62,7 +55,7 @@
     .avatar img {
       width: 100%;
       height: 100%;
-      object-fit: cover;       /* центрирует и обрезает без искажений */
+      object-fit: cover;
       display: block;
     }
     .name {
@@ -71,14 +64,17 @@
       text-align: center;
     }
     .hero-art {
-      flex: 1;
-      width: 30%;
-      max-width: 400px;
-      height: auto;
-      display: grid;
-      place-items: right;
-      padding: 12px;
-    }
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.hero-art img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  display: block;
+}
 
     /* ТЕКСТ */
     .intro {
@@ -158,16 +154,17 @@
 
     <!-- ШАПКА -->
     <header class="hero">
-      <div class="avatar img">
-        <img src="images/avatar.png">
-      </div>
-      <div class="profile">
-        <div class="name">VRAN_BE</div>
-      </div>
-      <div class="hero-art">
-        <img src="images/shapka.png">
-      </div>
-    </header>
+  <div class="profile">
+    <div class="avatar">
+      <img src="images/avatar.png" alt="Аватар Vranbe">
+    </div>
+    <div class="name">VRAN_BE</div>
+  </div>
+
+  <div class="hero-art">
+    <img src="images/shapka.png" alt="Шапка">
+  </div>
+</header>
 
     <p class="intro">
       Здравствуй! Это мой сайт, на котором можно будет видеть мои недавние работы и расценки на них.
